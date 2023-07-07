@@ -1,9 +1,51 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: template-repository
-Source: https://github.com/deepin-community/template-repository
+Upstream-Name: libpillowfight
+Upstream-Contact: https://groups.google.com/forum/#!forum/paperwork-gui
+Source: https://gitlab.gnome.org/World/OpenPaperwork/libpillowfight
 
 Files: *
-Copyright: 2023 Tsic404 <liuheng@deepin.org>
+Copyright: 2016-2019, Jerome Flesch <jflesch@kwain.net>
+           2018, Elliott Saled de Andeade <quantum.analyst@gmail.com>
+           2017, Cédric Barboiron <ced@winkie.fr>
+License: GPL-2+
+
+Files: include/pillowfight/util.h
+       src/pillowfight/_ace.c
+       src/pillowfight/_blackfilter.c
+       src/pillowfight/_blurfilter.c
+       src/pillowfight/_border.c
+       src/pillowfight/_canny.c
+       src/pillowfight/_compare.c
+       src/pillowfight/_gaussian.c
+       src/pillowfight/_grayfilter.c
+       src/pillowfight/_masks.c
+       src/pillowfight/_noisefilter.c
+       src/pillowfight/_scanborders.c
+       src/pillowfight/_sobel.c
+       src/pillowfight/_swt.c
+       src/pillowfight/util.c
+Copyright: 2011, Diego Elio Pettenò
+           2005-2007, Jens Gulden
+           2016-2019, Jerome Flesch
+License: GPL-2
+
+Files: debian/*
+Copyright: 2018-2022, Thomas Perret <thomas.perret@phyx.fr>
+License: GPL-2+
+
+License: GPL-2
+ Pypillowfight is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, version 2 of the License.
+ .
+ Pypillowfight is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, see <https://www.gnu.org/licenses/>.
+
 License: GPL-2+
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by

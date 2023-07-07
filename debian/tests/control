@@ -1,0 +1,7 @@
+Test-Command: set -e ; for py in $(py3versions -r 2>/dev/null) ; do cd "$AUTOPKGTEST_TMP" ; echo "Testing with $py:" ; $py -c "import pillowfight; print(pillowfight.__version__)" ; done
+Depends: python3-all, python3-pypillowfight
+Restrictions: allow-stderr, superficial
+Features: test-name=import
+
+Tests: unittests
+Depends: python3-pypillowfight, python3-pytest, python3-pytest-cov

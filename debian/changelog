@@ -1,5 +1,73 @@
-template-repository (1.0-1) unstable; urgency=medium
+libpillowfight (0.3.0-5) unstable; urgency=medium
 
-  * Initial release
+  * debian/control: dump Build-Depends to 4.6.1
+  * debian/copyright: update year
+  * debian/control: drop python3-nosetest build dependency (Closes: #1018399)
+  * debian/patches:
+    + import upstream patch to switch from nose to pytest
+    + add debian patch to remove nose from setup.py
+  * debian/watch: drop filenamemangling
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Thomas Perret <thomas.perret@phyx.fr>  Sun, 18 Sep 2022 12:52:14 +0200
+
+libpillowfight (0.3.0-4) unstable; urgency=medium
+
+  * debian/control:
+    - bump Standards-Version to 4.5.0 (no changes needed)
+    - bump debhelper-compat to 13
+  * debian/rules: drop dh_missing override
+
+ -- Thomas Perret <thomas.perret@phyx.fr>  Tue, 18 Aug 2020 20:44:29 +0200
+
+libpillowfight (0.3.0-3) unstable; urgency=medium
+
+  * Make new version (Closes: #945419)
+  * debian/salsa-ci.yml: Re-enable build-any Salsa-CI job
+  * debian/rules: Add dh_missing --fail-missing
+
+ -- Thomas Perret <thomas.perret@phyx.fr>  Mon, 02 Dec 2019 23:02:46 +0100
+
+libpillowfight (0.3.0-2) UNRELEASED; urgency=medium
+
+  * debian/control: add {lib,}python3-all-dbg package to Build-Depends to also
+    build python3 dbgsym package
+  * debian/rules: Fix crosscompiling using sbuild and pbuilder
+
+ -- Thomas Perret <thomas.perret@phyx.fr>  Thu, 17 Oct 2019 12:07:22 +0200
+
+libpillowfight (0.3.0-1) unstable; urgency=medium
+
+  * New upstream version 0.3.0
+  * debian/control:
+    - Rename library package with SONAME version
+    - Update library description
+      + Add scan borders to available algorithm list
+      + Remove complete description from development headers package
+  * debian/rules:
+    - Allow crossbuilding
+    - Explicitly use packages buildsystem in overridden targets
+  * Bump Standards-Version to 4.4.1
+    - Add Rules-Requires-Root: no to debian/control
+    - Move deprecated upstream metadata to debian/copyright
+  * Update copyright years and format and fix link (duck hints)
+  * Add unittests as DEP-8 autopkgtests
+  * Add Salsa CI jobs
+  * Remove debian/clean (not needed anymore)
+
+ -- Thomas Perret <thomas.perret@phyx.fr>  Sun, 13 Oct 2019 20:07:28 +0200
+
+libpillowfight (0.2.4-2) unstable; urgency=medium
+
+  * debian/tests: fix autopkgtests
+  * debian/copyright: complete with correct attribution (Closes: #917956)
+  * debian/control:
+    - add cmake to Build-Depends (Closes: #917987)
+    - dump Standards-Version to 4.3.0 (no changes needed)
+
+ -- Thomas Perret <thomas.perret@phyx.fr>  Wed, 02 Jan 2019 11:51:40 +0100
+
+libpillowfight (0.2.4-1) unstable; urgency=medium
+
+  * Initial release (Closes: #912928)
+
+ -- Thomas Perret <thomas.perret@phyx.fr>  Mon, 29 Oct 2018 13:53:46 +0100

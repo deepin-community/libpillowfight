@@ -1,0 +1,58 @@
+From: Thomas Perret <thomas.perret@gresille.org>
+Date: Fri, 21 Aug 2020 17:30:19 +0200
+Subject: Move unittests stack from nose to pytest
+Origin: https://gitlab.gnome.org/World/OpenPaperwork/libpillowfight/-/commit/f8a31e695e32d6092e3b2f036188effb5ad7b0b2
+Forwarded: yes
+
+---
+ .gitignore |  1 +
+ pytest.ini |  3 +++
+ tox.ini    | 13 +++++++++++--
+ 3 files changed, 15 insertions(+), 2 deletions(-)
+ create mode 100644 pytest.ini
+
+diff --git a/.gitignore b/.gitignore
+index 0a399c4..be2f80a 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -49,6 +49,7 @@ nosetests.xml
+ coverage.xml
+ *,cover
+ .hypothesis/
++.pytest_cache/
+ 
+ # Translations
+ *.mo
+diff --git a/pytest.ini b/pytest.ini
+new file mode 100644
+index 0000000..294ad40
+--- /dev/null
++++ b/pytest.ini
+@@ -0,0 +1,3 @@
++[pytest]
++addopts = -v --cov=pillowfight --cov-report=term-missing --cov-branch
++python_files = tests/tests_*.py
+diff --git a/tox.ini b/tox.ini
+index a178b92..6e25470 100644
+--- a/tox.ini
++++ b/tox.ini
+@@ -2,8 +2,17 @@
+ envlist=py3
+ 
+ [testenv]
+-deps=nose
+-commands=./setup.py nosetests
++deps=
++    pytest
++    pytest-cov
++# The two following lines have the same meaning but whitelist_externals option
++# is deprecated for versions >=3.18 and allowlist_externals is only recognized
++# for versions >=3.18
++whitelist_externals=make
++allowlist_externals=make
++commands=
++    make version
++    pytest
+ 
+ [flake8]
+ exclude =

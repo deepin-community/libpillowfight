@@ -1,4 +1,39 @@
 #!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+export DH_VERBOSE = 1
 
+include /usr/share/dpkg/pkg-info.mk
+include /usr/share/dpkg/architecture.mk
+
+export PYBUILD_NAME=pypillowfight
+
+src/pillowfight/_version.h: debian/_version.h.in
+	sed 's,@DEB_VERSION_UPSTREAM@,$(DEB_VERSION_UPSTREAM),g' $< > $@
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 %:
-	dh $@
+	dh $@ --with python3
+
+override_dh_auto_clean: src/pillowfight/_version.h
+	dh_auto_clean -p python3-pypillowfight -O--buildsystem=pybuild
+	dh_auto_clean -p libpillowfight0 -p libpillowfight-dev -O--buildsystem=cmake
+	rm -f src/pillowfight/_version.h
+
+override_dh_auto_configure: src/pillowfight/_version.h
+	dh_auto_configure -p python3-pypillowfight -O--buildsystem=pybuild
+	dh_auto_configure -p libpillowfight0 -p libpillowfight-dev -O--buildsystem=cmake
+
+override_dh_auto_build:
+	dh_auto_build -p python3-pypillowfight -O--buildsystem=pybuild
+	dh_auto_build -p libpillowfight0 -p libpillowfight-dev -O--buildsystem=cmake
+
+override_dh_auto_test:
+	# We disable tests for now because they are not reproductible
+	# They tend to produce different results on different machines
+	# Upstream is aware of this problem (see https://gitlab.gnome.org/World/OpenPaperwork/libpillowfight/issues/15)
+	# dh_auto_test -p python3-pypillowfight -O--buildsystem=pybuild
+
+override_dh_auto_install:
+	dh_auto_install -p python3-pypillowfight -O--buildsystem=pybuild
+	dh_auto_install -p libpillowfight0 -p libpillowfight-dev -O--buildsystem=cmake

@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+MIN_COVERAGE=25
+cp -r tests $AUTOPKGTEST_TMP
+cd $AUTOPKGTEST_TMP
+echo "Removing known failing tests"
+rm tests/tests_ace.py tests/tests_all.py tests/tests_blackfilter.py tests/tests_blurfilter.py tests/tests_border.py tests/tests_compare.py tests/tests_gaussian.py tests/tests_grayfilter.py tests/tests_masks.py tests/tests_noisefilter.py tests/tests_swt.py
+python3 -m pytest --cov=pillowfight --cov-report=term-missing --cov-fail-under=$MIN_COVERAGE --cov-branch tests/*.py
